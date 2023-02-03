@@ -1,0 +1,38 @@
+-----------------   On linux ----------------
+ 1- Create a virtualhost configuration file with this commande :
+           - Apache2
+       sudo nano /etc/apache2/sites-available/your_domaine.conf 
+           - Httpd
+       sudo nano /etc/httpd/conf/your_domaine.conf
+       
+ 2- Add this :
+      <VirtualHost *:80>
+         ServerName [your_server_name]
+         ServerAlias [your_server_alias]
+         DocumentRoot [your_document_root_directory]
+         ErrorLog ${APACHE_LOG_DIR}/error.log
+         CustomLog ${APACHE_LOG_DIR}/access.log combined
+      </VirtualHost>
+    If you want create it starting another docummentRoot not /var/www/ you can change this ${APACHE_LOG_DIR}
+    
+  3- Add permission
+       <Directory [document_root_directory]>
+          Require all granted
+       </Directory>
+       
+    It is same file your_domaine.conf
+  
+  4- You save all. After that you create host
+       sudo nano etc/hosts
+     you add this line
+       127.0.0.1  your_domaine (respect space)
+       
+  5- Then you write this commandes
+      sudo systemctl restart apache2
+      sudo service apach2 restart
+      
+  6-FINISH
+      
+      
+
+
